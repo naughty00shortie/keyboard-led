@@ -9,5 +9,10 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'keyboard-led';
+
+  changeButtonColor(event: Event): void {
+    const button = event.target as HTMLButtonElement;
+    const colorPicker = document.getElementById('colorPicker') as HTMLInputElement;
+    button.style.backgroundColor = colorPicker.value;
+  }
 }

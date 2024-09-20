@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "/dist/keyboard-led/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
