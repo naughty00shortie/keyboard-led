@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { getDatabase, ref, set, onValue } from 'firebase/database';
+import {Component, OnInit} from '@angular/core';
+import {getDatabase, ref, set, onValue} from 'firebase/database';
 import {RouterOutlet} from "@angular/router";
 
 @Component({
@@ -9,7 +9,7 @@ import {RouterOutlet} from "@angular/router";
   imports: [
     RouterOutlet
   ],
-  styleUrls: ['./app.component.css']
+  styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
   private db = getDatabase();
@@ -24,8 +24,15 @@ export class AppComponent implements OnInit {
     const color = colorPicker.value;
     const keyId = button.getAttribute('data-key-id');
 
-    button.style.backgroundColor = color;
+    this.updateButtonColor(keyId, color);
     this.saveButtonState(keyId, color);
+  }
+
+  private updateButtonColor(keyId: string | null, color: string): void {
+    const buttons = document.querySelectorAll(`button[data-key-id="${keyId}"]`) as NodeListOf<HTMLButtonElement>;
+    buttons.forEach(button => {
+      button.style.backgroundColor = color;
+    });
   }
 
   private saveButtonState(keyId: string | null, color: string): void {
@@ -39,10 +46,7 @@ export class AppComponent implements OnInit {
     onValue(buttonsRef, (snapshot) => {
       const data = snapshot.val();
       for (const keyId in data) {
-        const button = document.querySelector(`button[data-key-id="${keyId}"]`) as HTMLButtonElement;
-        if (button) {
-          button.style.backgroundColor = data[keyId].color;
-        }
+        this.updateButtonColor(keyId, data[keyId].color);
       }
     });
   }
