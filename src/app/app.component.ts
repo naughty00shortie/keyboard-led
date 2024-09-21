@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.syncButtonStates();
+    console.log(window.location.hostname);
   }
 
   changeButtonColor(event: Event): void {
