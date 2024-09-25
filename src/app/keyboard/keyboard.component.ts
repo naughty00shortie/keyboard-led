@@ -59,6 +59,14 @@ export class KeyboardComponent implements OnInit {
     buttons.forEach(button => {
       button.style.backgroundColor = color;
     });
+    this.saveAllButtonStates(color);
+  }
 
+  private saveAllButtonStates(color: string) {
+    const buttons = document.querySelectorAll('button') as NodeListOf<HTMLButtonElement>;
+    buttons.forEach(button => {
+      const keyId = button.getAttribute('data-key-id');
+      this.saveButtonState(keyId, color);
+    });
   }
 }
