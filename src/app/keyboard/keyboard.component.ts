@@ -51,4 +51,14 @@ export class KeyboardComponent implements OnInit {
       }
     });
   }
+
+  changeAllButtonColors(): void {
+    const colorPicker = document.getElementById('colorPicker') as HTMLInputElement;
+    const color = colorPicker.value;
+    const buttons = document.querySelectorAll('button') as NodeListOf<HTMLButtonElement>;
+    buttons.forEach(button => {
+      button.style.backgroundColor = color;
+    });
+
+  }
 }
