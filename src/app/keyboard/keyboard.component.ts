@@ -57,16 +57,20 @@ export class KeyboardComponent implements OnInit {
     const color = colorPicker.value;
     const buttons = document.querySelectorAll('button') as NodeListOf<HTMLButtonElement>;
     buttons.forEach(button => {
-      button.style.backgroundColor = color;
+      this.saveButtonState(button.getAttribute('data-key-id'), color);
     });
-    this.saveAllButtonStates(color);
   }
 
-  private saveAllButtonStates(color: string) {
+  changeAllRandom() {
     const buttons = document.querySelectorAll('button') as NodeListOf<HTMLButtonElement>;
     buttons.forEach(button => {
       const keyId = button.getAttribute('data-key-id');
-      this.saveButtonState(keyId, color);
+      this.saveButtonState(keyId, this.getRandColor());
     });
   }
+
+  private getRandColor() {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+  }
+
 }
