@@ -73,4 +73,24 @@ export class KeyboardComponent implements OnInit {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
   }
 
+  changeAllRainbow() {
+    const buttons = document.querySelectorAll('button') as NodeListOf<HTMLButtonElement>;
+    buttons.forEach(button => {
+      const keyId = button.getAttribute('data-key-id');
+      this.saveButtonState(keyId, this.getRandRainbowColor());
+    });
+  }
+
+  private getRandRainbowColor(): string {
+    const randomValue = Math.floor(Math.random() * 256);
+    const colors = [255, 0, randomValue];
+
+    for (let i = colors.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [colors[i], colors[j]] = [colors[j], colors[i]];
+    }
+    console.log(colors);
+    const hexColor = colors.map(value => value.toString(16).padStart(2, '0')).join('');
+    return `#${hexColor}`;
+  }
 }
