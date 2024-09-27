@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {RouterOutlet} from "@angular/router";
 import { KeyboardComponent } from './keyboard/keyboard.component';
 import {TitleComponent} from "./title/title.component";
+import {TextComponent} from "./text/text.component";
 
 
 @Component({
@@ -11,7 +12,8 @@ import {TitleComponent} from "./title/title.component";
   imports: [
     RouterOutlet,
     KeyboardComponent,
-    TitleComponent
+    TitleComponent,
+    TextComponent
   ],
   styleUrl: './app.component.css'
 })
